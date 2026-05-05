@@ -31,7 +31,7 @@ autoinstall:
       SERIAL=$(dmidecode -s system-serial-number | tr "[:upper:]" "[:lower:]" | xargs)
 
       # Valida se é vazio ou "not specified"
-      if [ -z "$SERIAL" ] || [ "$SERIAL" = "not" ] || [ "$SERIAL" = "specified" ] || [ "$SERIAL" = "notspecified" ]; then
+      if [ -z "$SERIAL" ] || [ "$SERIAL" = "not" ] || [ "$SERIAL" = "specified" ] || [ "$SERIAL" = "notspecified" ] || [ "$SERIAL" = "not specified" ]; then
           # Gera um UUID e pega o primeiro bloco (8 caracteres)
           SERIAL=$(cat /proc/sys/kernel/random/uuid | cut -d"-" -f1)
       fi
