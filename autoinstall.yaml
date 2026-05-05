@@ -26,11 +26,12 @@ autoinstall:
     install: true
   updates: all
   late-commands:
+    - curtin in-target -- SERIAL=$(dmidecode -s system-serial-number | tr '[:upper:]' '[:lower:]')
+    - curtin in-target -- HOSTNAME="voltz-${SERIAL}"
+    - curtin in-target -- hostnamectl set-hostname '$(HOSTNAME)'
   #  - curtin in-target -- wget https://repo2.xxxxx.com/debian/dists/stable/main/binary-all/xxxx.deb
   #  - curtin in-target -- dpkg -i ./xxxxx.deb
   #  - curtin in-target -- apt update
   #  - curtin in-target -- apt install -y 
-    - curtin in-target -- SERIAL=$(dmidecode -s system-serial-number | tr '[:upper:]' '[:lower:]')
-    - curtin in-target -- HOSTNAME="voltz-${SERIAL}"
-    - curtin in-target -- hostnamectl set-hostname '$(HOSTNAME)'
+
   shutdown: reboot
