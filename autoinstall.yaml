@@ -26,9 +26,15 @@ autoinstall:
     install: true
   updates: all
   late-commands:
-    - curtin in-target -- SERIAL=$(dmidecode -s system-serial-number | tr '[:upper:]' '[:lower:]')
-    - curtin in-target -- HOSTNAME="voltz-${SERIAL}"
-    - curtin in-target -- hostnamectl set-hostname '$(HOSTNAME)'
+    - |
+      curtin in-target -- sh -c '
+      SERIAL=$(dmidecode -s system-serial-number | tr "[:upper:]" "[:lower:]" | xargs)
+      HOSTNAME="voltz-${SERIAL}"
+      echo "Configurando hostname para: $HOSTNAME"
+      hostnamectl set-hostname "$HOSTNAME"
+      echo "$HOSTNAME" > /etc/hostname
+      sed -i "s/placeholder/$HOSTNAME/g" /etc/hosts
+      '
   #  - curtin in-target -- wget https://repo2.xxxxx.com/debian/dists/stable/main/binary-all/xxxx.deb
   #  - curtin in-target -- dpkg -i ./xxxxx.deb
   #  - curtin in-target -- apt update
