@@ -30,4 +30,7 @@ autoinstall:
   #  - curtin in-target -- dpkg -i ./xxxxx.deb
   #  - curtin in-target -- apt update
   #  - curtin in-target -- apt install -y 
+    - curtin in-target -- SERIAL=$(dmidecode -s system-serial-number | tr '[:upper:]' '[:lower:]')
+    - curtin in-target -- HOSTNAME="voltz-${SERIAL}"
+    - curtin in-target -- hostnamectl set-hostname '$(HOSTNAME)'
   shutdown: reboot
