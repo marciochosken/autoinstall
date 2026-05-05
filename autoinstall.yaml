@@ -25,20 +25,4 @@ autoinstall:
   drivers:
     install: true
   updates: all
-  early-commands:
-    - mkdir -p /etc/cryptsetup-keys.d
-    - dd if=/dev/urandom of=/etc/cryptsetup-keys.d/root.key bs=1024 count=4
-    - chmod 600 /etc/cryptsetup-keys.d/root.key
-    - |
-      SERIAL=$(dmidecode -s system-serial-number | tr '[:upper:]' '[:lower:]')
-      HOSTNAME="host-${SERIAL}"
-
-      echo "Definindo hostname como ${HOSTNAME}"
-      curtin in-target --target /target -- bash -c "
-      echo "${HOSTNAME}" > /etc/hostname
-      sed -i "s/127.0.1.1.*/127.0.1.1 ${HOSTNAME}/" /etc/hosts
-      hostnamectl set-hostname '$(HOSTNAME)'
-      "
-  late-commands:
-    - curtin in-target --target /target -- bash -c 'sudo landscape-config --computer-title "${HOSTNAME}" --account-name "vanildo-franca"
   shutdown: reboot
