@@ -29,7 +29,15 @@ autoinstall:
     - |
       curtin in-target -- sh -c '
       SERIAL=$(dmidecode -s system-serial-number | tr "[:upper:]" "[:lower:]" | xargs)
+
+      # Valida se é vazio ou "not specified"
+      if [ -z "$SERIAL" ] || [ "$SERIAL" = "not" ] || [ "$SERIAL" = "specified" ] || [ "$SERIAL" = "notspecified" ]; then
+          # Gera um UUID e pega o primeiro bloco (8 caracteres)
+          SERIAL=$(cat /proc/sys/kernel/random/uuid | cut -d"-" -f1)
+      fi
+      
       HOSTNAME="voltz-${SERIAL}"
+      
       echo "Configurando hostname para: $HOSTNAME"
       hostnamectl set-hostname "$HOSTNAME"
       echo "$HOSTNAME" > /etc/hostname
