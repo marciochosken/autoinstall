@@ -5,7 +5,7 @@ autoinstall:
     hostname: placeholder
     realname: "Usuario de Suporte"
     username: suporte
-    password: '$y$j9T$goE4AFcfqagaSOkTkgKFM1$tD2z6JVPkT/kG5UygXfkEL9UVXcnNowAaLsyWK49Vs6'
+    password: '$6$JWgq58nxhpyzsKJc$U0NS0l7TsI7LB5SaiR0r7FAgDNNcH/vfNuofT15qRb1JGPc7gKEIrN2x8x.JyQ7Z9lHA.CCwYmMmsJ2byJAx2/'
   locale: "en_US.UTF-8"
   keyboard:
     layout: br
