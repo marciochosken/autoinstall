@@ -1,8 +1,6 @@
 #cloud-config
 autoinstall:
   version: 1
-  source:
-    id: ubuntu-desktop-minimal
   identity:
     hostname: placeholder
     realname: "Usuario de Suporte"
