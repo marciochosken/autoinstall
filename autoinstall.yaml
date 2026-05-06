@@ -66,4 +66,17 @@ autoinstall:
   #  - curtin in-target -- dpkg -i ./xxxxx.deb
   #  - curtin in-target -- apt update
   #  - curtin in-target -- apt install -y 
+  user-data:
+    apt:
+      sources:
+        docker.list:
+          source: "deb [arch=amd64 signed-by=$KEY_FILE] https://download.docker.com/linux/ubuntu $RELEASE stable"
+          keyid: 7EA0A9C3F273FCD8  # ID da chave do Docker
+          keyserver: https://download.docker.com/linux/ubuntu/gpg
+    packages:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
   shutdown: reboot
