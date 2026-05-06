@@ -20,6 +20,15 @@ autoinstall:
     - name: code
       channel: stable
       classic: true
+    - name: postman
+      channel: stable
+    - name: dbeaver-ce
+      channel: stable
+      classic: true
+    - name: insomnia
+      channel: stable
+    - name: bruno
+      channel: stable
   codecs:
     install: true
   drivers:
