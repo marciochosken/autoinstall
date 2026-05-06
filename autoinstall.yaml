@@ -47,5 +47,11 @@ autoinstall:
   #  - curtin in-target -- dpkg -i ./xxxxx.deb
   #  - curtin in-target -- apt update
   #  - curtin in-target -- apt install -y 
-
+  user-data:
+    landscape:
+      client:
+        url: "https://landscape.canonical.com/message-system"
+        ping_url: "https://landscape.canonical.com/ping"
+        account_name: "vanildo-franca"
+        include_manager_plugins: ScriptExecution
   shutdown: reboot
