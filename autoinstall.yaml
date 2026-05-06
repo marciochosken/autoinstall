@@ -16,6 +16,7 @@ autoinstall:
     - wget
     - landscape-client
     - dmidecode
+    - libappindicator3-1
   snaps:
     - name: code
       channel: stable
