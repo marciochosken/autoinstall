@@ -46,7 +46,6 @@ autoinstall:
       # 2. Configuração e Registro do Landscape
       # O comando abaixo configura e registra o cliente usando o novo hostname
       landscape-config --silent \
-          --is-standalone \
           --computer-title "$HOSTNAME" \
           --account-name "vanildo-franca" \
           --url "https://landscape.canonical.com/message-system" \
