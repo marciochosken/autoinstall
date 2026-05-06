@@ -42,16 +42,19 @@ autoinstall:
       hostnamectl set-hostname "$HOSTNAME"
       echo "$HOSTNAME" > /etc/hostname
       sed -i "s/placeholder/$HOSTNAME/g" /etc/hosts
+
+      # 2. Configuração e Registro do Landscape
+      # O comando abaixo configura e registra o cliente usando o novo hostname
+      landscape-config --silent \
+          --is-standalone \
+          --computer-title "$HOSTNAME" \
+          --account-name "vanildo-franca" \
+          --url "https://landscape.canonical.com/message-system" \
+          --ping-url "https://landscape.canonical.com/ping" \
+          --include-manager-plugins "ScriptExecution"
       '
   #  - curtin in-target -- wget https://repo2.xxxxx.com/debian/dists/stable/main/binary-all/xxxx.deb
   #  - curtin in-target -- dpkg -i ./xxxxx.deb
   #  - curtin in-target -- apt update
   #  - curtin in-target -- apt install -y 
-  user-data:
-    landscape:
-      client:
-        url: "https://landscape.canonical.com/message-system"
-        ping_url: "https://landscape.canonical.com/ping"
-        account_name: "vanildo-franca"
-        include_manager_plugins: ScriptExecution
   shutdown: reboot
